@@ -282,7 +282,7 @@ services:
         mkdir -p /sources/dags /sources/data /sources/include /sources/logs /sources/tests
         chown -R "${AIRFLOW_UID}:0" /sources/{dags,data,include,logs,tests}
         exec /entrypoint airflow version
-    # yamllint enable rule:line-length
+    # yamllint enable rule:line-length 
     environment:
       <<: *airflow-common-env
       _AIRFLOW_DB_MIGRATE: 'true'
