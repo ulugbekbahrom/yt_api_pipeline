@@ -51,7 +51,7 @@ with DAG(
     description="DAG to process JSON file and insert data into staging and core schemas",
     schedule=None,
     catchup=False
-) as dag:
+) as dag_update:
     
     update_staging = staging_table()
     update_core = core_table()
