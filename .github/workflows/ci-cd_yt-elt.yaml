@@ -35,10 +35,16 @@ jobs:
       - name: Build and push Docker image
         if: steps.changed-files-build.outputs.any_changed == 'true'
         run: |
+            echo "🚀 Starting Docker build"
+            echo "Repo: $DOCKERHUB_NAMESPACE/$DOCKERHUB_REPOSITORY"
+            echo "SHA: $GITHUB_SHA"
+
             docker buildx build --push \
               --tag ${{ vars.DOCKERHUB_NAMESPACE }}/${{ vars.DOCKERHUB_REPOSITORY }}:latest \
               --tag ${{ vars.DOCKERHUB_NAMESPACE }}/${{ vars.DOCKERHUB_REPOSITORY }}:${{ github.sha }} \
               .
+
+            echo "✅ Docker build & push finished"
 
   unit-and-integration-ande2e-tests:
     runs-on: ubuntu-latest
