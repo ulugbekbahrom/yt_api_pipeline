@@ -36,8 +36,8 @@ jobs:
         if: steps.changed-files-build.outputs.any_changed == 'true'
         run: |
             echo "🚀 Starting Docker build"
-            echo "Repo: $DOCKERHUB_NAMESPACE/$DOCKERHUB_REPOSITORY"
-            echo "SHA: $GITHUB_SHA"
+            echo "Repo: ${{ vars.DOCKERHUB_NAMESPACE }}/${{ vars.DOCKERHUB_REPOSITORY }}"
+            echo "SHA: ${{ github.sha }}"
 
             docker buildx build --push \
               --tag ${{ vars.DOCKERHUB_NAMESPACE }}/${{ vars.DOCKERHUB_REPOSITORY }}:latest \
